@@ -13,4 +13,18 @@ function message (sender, sms, receiver) {
 }
 
 console.log(message(sender, sms, receiver));
+
+
+
 //Ex 1.2
+var firstName = 'justyna';
+var lastName = 'bednarko';
+
+firstName= firstName.charAt(0).toUpperCase();
+lastName = lastName.charAt(0).toUpperCase();
+
+function letters (firstName, lastName) {
+    return firstName + '.' + lastName;
+}
+
+console.log(letters(firstName, lastName));
