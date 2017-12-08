@@ -32,10 +32,20 @@ console.log(letters(firstName, lastName));
 function RandomValue() {
     var value = Math.random() * 10;
     var value = value.toFixed(2);
+    return value;
+}
+
+console.log('Twoja szczęśliwa liczba to: ' + RandomValue());
+
+//Ex 1.3-SECOND OPTION
+function RandomValueTwo() {
+    var value = Math.random() * 10;
+    var value = value.toFixed(2);
     return value = value;
 }
 
-console.log(RandomValue('Twoja szczęśliwa liczba to: ' + RandomValue));
+console.log('Twoja szczęśliwa liczba to: ' + RandomValueTwo());
+
 
 //Ex 1.4
 function GetDinnerPrice() {
