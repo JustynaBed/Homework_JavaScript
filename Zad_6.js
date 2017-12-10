@@ -18,11 +18,11 @@ console.log(message(sender, sms, receiver));
 var firstName = 'justyna';
 var lastName = 'bednarko';
 
-firstName= firstName.charAt(0).toUpperCase();
-lastName = lastName.charAt(0).toUpperCase();
+
 
 function letters (firstName, lastName) {
-    return firstName + '.' + lastName;
+
+    return firstName.charAt(0).toUpperCase() + '.' + lastName.charAt(0).toUpperCase();
 }
 
 console.log(letters(firstName, lastName));
@@ -30,10 +30,14 @@ console.log(letters(firstName, lastName));
 
 //Ex 6.3
 function randomValue() {
-    var value = Math.random() * 10;
-    var value = value.toFixed(2);
-    return value = value;
+    var value = (Math.random() * 10).toFixed(2);
+    return value;
 }
+
+// function randomValue() {
+//     return (Math.random() * 10).toFixed(2);
+//
+// }
 
 console.log('Twoja szczęśliwa liczba to: ' + randomValue());
 
@@ -51,8 +55,7 @@ console.log('Twoja szczęśliwa liczba to: ' + randomValueTwo());
 function getDinnerPrice() {
     var tip = 20;
     var price = 100;
-    var priceFinal = tip + price;
-    return priceFinal;
+    return tip + price;
 }
 
 console.log(getDinnerPrice());
