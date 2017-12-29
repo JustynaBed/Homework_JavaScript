@@ -24,11 +24,12 @@ var workers = [
 
 //Struktura firmy
 
-var company = { offices: [] }
+var company = { offices: [] };
 
 company.offices = offices.map((office) => {
     return {
         id: office.id,
+        name: office.name,
         headquarter: office.headquarter || false,
         workers: workers.filter(function(worker) {
             return worker.office === office.id
@@ -36,32 +37,88 @@ company.offices = offices.map((office) => {
 }
 });
 
+console.log(company);
+
 // 1) Wyswietl, informacje o biurze w Gliwicach (lokalizacja, liczba przypisanych pracowników, srednia pensja),
 
+const infoGliwice = company.offices
+    .filter((office) => office.name === 'Gliwice')
+    .map(({name,workers}) => {
+        return {
+            name: name,
+            numberOfEmployees: workers.length,
+            averageSalary: workers.reduce((acc, next) => acc + next.salary, 0) / workers.length
+        }
+    });
 
-
+console.log(infoGliwice);
 
 // 2) Dodaj nowe biuro (w Poznaniu)
 
-
+company.offices.push({
+    "id" : "PO",
+    "name" : "Poznań",
+    "headquarter": false,
+    "workers": [],
+});
 
 //3) Dodaj nowego pracownika do biura w Poznaniu:{ id: 16, name: "Olek", type: "M", office: "PO", salary: 500 }
 
+const newWorker = { id: 16, name: "Olek", type: "M", office: "PO", salary: 500 };
 
+let newOfficeInPoznan = company.offices
+    .find((office) => office.name === 'Poznań');
+
+newOfficeInPoznan.workers.push(newWorker)
 
 // 4) Wyswietl, informacje o biurze w Poznaniu
 
+const infoPoznan = company.offices
+    .filter((office) => office.name === 'Poznań');
 
-
+console.log(infoPoznan);
 
 // 5) Wyswietl srednia pensje w calej firmie
 
+const workersInAllOffices = company.offices.reduce((acc, next)=>
+    acc.concat(next.workers), []);
 
+const averageSalary = (workersInAllOffices.reduce((acc, next) =>
+acc + next.salary, 0) / workersInAllOffices.length).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+
+console.log(averageSalary);
 
 // 6) Wyswietl najlepiej oplacanego pracownika w poszczególnych biurach
 
+const bestPaidWorkers = company.offices.map(({office, workers}) => {
+    let salaryWorkers = workers.map(worker => worker.salary);
+    const maxSalary = salary => Math.max(...salary);
+    return {
+        workers: workers.filter(office => office.salary === maxSalary(salaryWorkers))
+    }
 
+});
+
+const bestPaidWorkersInOffices = bestPaidWorkers
+    .reduce((acc, next) => acc.concat(next.workers),[]);
+
+console.log(bestPaidWorkersInOffices);
 
 // 7) Wyswietl najlepiej oplacanego pracownika w calej firmie oraz nazwe jego biura.
 
+//1 sposób
+const sortWorkers = bestPaidWorkersInOffices.sort((prev, next) => next.salary - prev.salary)
+console.log(sortWorkers[0]);
+
+//2 sposób
+const salaryWorkers = workersInAllOffices
+    .map(worker => worker.salary);
+
+const maxSalary = (Math.max(...salaryWorkers));
+
+
+const bestWorker = workersInAllOffices
+    .find((office) => office.salary === maxSalary);
+
+console.log(bestWorker);
 
