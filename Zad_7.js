@@ -56,10 +56,10 @@ console.log(infoGliwice);
 // 2) Dodaj nowe biuro (w Poznaniu)
 
 company.offices.push({
-    "id" : "PO",
-    "name" : "Poznań",
-    "headquarter": false,
-    "workers": [],
+    id : 'PO',
+    name : 'Poznań',
+    headquarter: false,
+    workers: [],
 });
 
 //3) Dodaj nowego pracownika do biura w Poznaniu:{ id: 16, name: "Olek", type: "M", office: "PO", salary: 500 }
