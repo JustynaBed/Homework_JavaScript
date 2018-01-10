@@ -1,56 +1,41 @@
-//Dodanie pierwszego diva o klasie 'container'
 $('body').prepend($('<div>').addClass('container'));
 
+const getRow = () => $('<div>')
+        .addClass('row');
 
-//Dodanie trzech divów o klasie 'row
-function getRow(addClass) {
-    return $('<div>')
-        .addClass('row')
-}
-
-    for (var i = 0; i < 3; i++) {
+    for (let i = 0; i < 3; i++) {
         $('.container').prepend(getRow());
     }
 
- var $containerOne = $('.row').eq(0);
- var $containerTwo = $('.row').eq(1);
- var $containerThree = $('.row').eq(2);
+ let $firstRow = $('.row').eq(0);
+ let $secondRow = $('.row').eq(1);
+ let $thirdRow = $('.row').eq(2);
 
 
- //Dodanie trzech divów do containerOne
-function getItemOne(col, id, text) {
-    return $('<div>')
-        .addClass('col' + col)
-        .attr('id', id)
-        .append('<p class="description">' + text +'</p>');
-}
+const getColumnForFirstRow = (col, id, text) => $('<div>')
+    .addClass('col' + col)
+    .attr('id', id)
+    .append(`<p class="description">${text}</p>`);
+
+$firstRow.append(getColumnForFirstRow('-sm-4', 'aaa', 'Jeden'));
+$firstRow.append(getColumnForFirstRow('-sm-4', 'ccc', 'Dwa'));
+$firstRow.append(getColumnForFirstRow('-sm-4', 'ooo', 'Trzy'));
 
 
-$containerOne.append(getItemOne('-sm-4', 'aaa', 'Jeden'));
-$containerOne.append(getItemOne('-sm-4', 'ccc', 'Dwa'));
-$containerOne.append(getItemOne('-sm-4', 'ooo', 'Trzy'));
-
-//Dodanie dwóch divów do containerTwo
-function getItemTwo(col, style, text) {
-    return $('<div>')
+const getColumnForSecondRow = (col, style, text) => $('<div>')
         .addClass('col' + col)
         .attr('style', style)
         .append('<p class="description">' + text +'</p>');
-}
+
+$secondRow.append(getColumnForSecondRow('-xs-6', 'color: red;', 'Cztery'));
+$secondRow.append(getColumnForSecondRow('-xs-6', 'color: red;', 'Pieć'));
 
 
-$containerTwo.append(getItemTwo('-xs-6', 'color: red;', 'Cztery'));
-$containerTwo.append(getItemTwo('-xs-6', 'color: red;', 'Pieć'));
-
-//Dodanie trzech divów do containerTwo
-function getItemThree(col, data, text) {
-    return $('<div>')
+const getColumnForThirdRow = (col, data, text) => $('<div>')
         .addClass('col' + col)
         .attr('data-product', data)
         .append('<p class="description">' + text +'</p>');
-}
 
-
-$containerThree.append(getItemThree('-md-3', '300', 'Sześć'));
-$containerThree.append(getItemThree('-md-3', '400', 'Siedem'));
-$containerThree.append(getItemThree('-md-3', '500', 'Osiem'));
+$thirdRow.append(getColumnForThirdRow('-md-3', '300', 'Sześć'));
+$thirdRow.append(getColumnForThirdRow('-md-3', '400', 'Siedem'));
+$thirdRow.append(getColumnForThirdRow('-md-3', '500', 'Osiem'));
