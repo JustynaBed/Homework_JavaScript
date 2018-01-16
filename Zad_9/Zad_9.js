@@ -35,12 +35,14 @@ const $table = $('<table class="table table-dark">').appendTo('body');
 const getRowsWithUsers = () => {
     return users.map(user => {
         return $(`
-        <tr>
-            <td>${user.id}</td>
-            <td>${user.firstName}</td>
-            <td>${user.lastName}</td>
-            <td>${user.age}</td>
-            <td>${user.city}</td>
+        <tr class="table-row">
+            <td class="table-cell"><input class='terms-cbx' type='checkbox' data-user='${user.id}'></td>
+            <td class="table-cell">${user.id}</td>
+            <td class="table-cell">${user.firstName}</td>
+            <td class="table-cell">${user.lastName}</td>
+            <td class="table-cell">${user.age}</td>
+            <td class="table-cell">${user.city}</td>
+            <td><i class="fa fa-minus-square remove-icon" aria-hidden="true"></i></td>
         </tr>
         `)
     })
@@ -51,24 +53,16 @@ $table.append(getRowsWithUsers());
 // A.1 Pierwsza komórka powinna zawierać checkbox, zaznaczenie checkboxa
 // ma wyświetlić w konsoli ID danego użytkownika
 
-let $firstCellOfRows= $('td:nth-child(1)');
+const $termsbox = $('.terms-cbx');
 
-const $createCbx = $('<input type="checkbox" class="terms-cbx"">');
-
-$firstCellOfRows.prepend($createCbx);
-
-const $termsCbx = $('.terms-cbx');
-
-function propertyOfCbx () {
-    const isChecked = $termsCbx.prop('checked');
-    console.log(true);
+function propertyOfCbx() {
+    if ($(this).prop('checked')) {
+        console.log($(this).data('user'));
+    }
 }
 
-$termsCbx.on('click', propertyOfCbx);
-
+$termsbox.on('click', propertyOfCbx);
 // A.2 Ostatnia komórka powinna zawierać X z klasą remove-icon, który usuwa dany rząd
-
-$('<td><i class="fa fa-minus-square remove-icon" aria-hidden="true"></i></td>').appendTo($('tr'));
 
 const $trashIcon = $('.remove-icon');
 
@@ -77,14 +71,6 @@ function removeRow() {
 }
 
 $trashIcon.on('click', removeRow);
-
-// A.3 rząd powinien zawierać klasę table-row
-
- $('tr').addClass('table-row');
-
-// A.4 komórka powinna zawierać klasę table-cell
-
-$('td').addClass('table-cell');
 
 // A.5 najechanie na rząd ma go podświetlić
 
@@ -101,3 +87,4 @@ function highLightOnLeave() {
 $tableRow.on('mouseenter', highLightOnOver);
 $tableRow.on('mouseleave', highLightOnLeave);
 
+// B.1 nad tabela być formularz, który pobiera dane usera i puszuje go do tablicy users i od razu pokazuje na widoku.
