@@ -88,19 +88,20 @@ $tableRow.on('mouseenter', highLightOnOver);
 $tableRow.on('mouseleave', highLightOnLeave);
 
 // B.1 nad tabela być formularz, który pobiera dane usera i puszuje go do tablicy users i od razu pokazuje na widoku.
-// const $form = $('<form>').prependTo('body');
-//
 
-const $form = $('<form>').prependTo('body');
+const $getForm = $(`<form>
+<label for="firstName">First name: </label><input type="text" id="firstName" name="user_name"><br/>
+<label for="lastName">Last name: </label><input type="text" id="lastName" name="user_lasName"><br/>
+<label for="age">Age: </label><input type="text" id="age" name="user_age"><br/>
+<label for="city">City: </label><select type="text" id="city" name="user_city"></select><br/>
+<button id="accept-button" type="submit" disabled><i class="fa fa-plus-square fa-lg"></i></button><hr>
+</form>)`);
 
+$getForm.prependTo('body');
 
-$form.append($('<label for="firstName">First name: </label><input type="text" id="firstName" name="user_name"><br/>'));
-$form.append($('<label for="lastName">Last name: </label><input type="text" id="lastName" name="user_lasName"><br/>'));
-$form.append($('<label for="age">Age: </label><input type="text" id="age" name="user_age"><br/>'));
-$form.append($('<label for="city">City: </label><select type="text" id="city" name="user_city"><br/>'));
-$form.append($('<button class="add-row"><i class="fa fa-plus-square fa-lg"></i></button><hr>'));
+// B.2 formularz ma mieć select, z 5 miastami do wyboru (Twoja decyzja), pozostałe wartości pobrane z inputów textowych
 
-const cities = ['Gdańsk', 'Gdynia', 'Sopot', 'Wejherowo'];
+const cities = ['Gdańsk', 'Gdynia', 'Sopot', 'Wejherowo', 'Rumia', 'Reda'];
 const $citiesList = $('#city');
 
 const getOptions = () => {
@@ -109,4 +110,21 @@ const getOptions = () => {
 
 $citiesList.append(getOptions());
 
+// B.3 przycisk do dodania użytkownika ma być odblokowany jeśli wiek age > 18 a firstName ma więcej niż 3 litery
 
+$acceptBtn = $('#accept-button');
+$ageRequried = $('#age');
+$numberOfLetterRequired = $('#firstName');
+
+function required () {
+    const MIN_REQUIRED_AGE = 18;
+    const MIN_REQUIRED_LETTER_OF_NAME = 4;
+    return $ageRequried.val() < MIN_REQUIRED_AGE &&
+        $numberOfLetterRequired.val().length < MIN_REQUIRED_LETTER_OF_NAME;
+}
+
+function validateSubmitBtn() {
+    $acceptBtn.prop('disabled', required());
+}
+
+$ageRequried.add($numberOfLetterRequired).on('keyup', validateSubmitBtn);
