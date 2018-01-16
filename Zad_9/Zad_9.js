@@ -119,7 +119,7 @@ $numberOfLetterRequired = $('#firstName');
 function required () {
     const MIN_REQUIRED_AGE = 18;
     const MIN_REQUIRED_LETTER_OF_NAME = 4;
-    return $ageRequried.val() < MIN_REQUIRED_AGE &&
+    return $ageRequried.val() < MIN_REQUIRED_AGE ||
         $numberOfLetterRequired.val().length < MIN_REQUIRED_LETTER_OF_NAME;
 }
 
