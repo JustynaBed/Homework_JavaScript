@@ -88,3 +88,25 @@ $tableRow.on('mouseenter', highLightOnOver);
 $tableRow.on('mouseleave', highLightOnLeave);
 
 // B.1 nad tabela być formularz, który pobiera dane usera i puszuje go do tablicy users i od razu pokazuje na widoku.
+// const $form = $('<form>').prependTo('body');
+//
+
+const $form = $('<form>').prependTo('body');
+
+
+$form.append($('<label for="firstName">First name: </label><input type="text" id="firstName" name="user_name"><br/>'));
+$form.append($('<label for="lastName">Last name: </label><input type="text" id="lastName" name="user_lasName"><br/>'));
+$form.append($('<label for="age">Age: </label><input type="text" id="age" name="user_age"><br/>'));
+$form.append($('<label for="city">City: </label><select type="text" id="city" name="user_city"><br/>'));
+$form.append($('<button class="add-row"><i class="fa fa-plus-square fa-lg"></i></button><hr>'));
+
+const cities = ['Gdańsk', 'Gdynia', 'Sopot', 'Wejherowo'];
+const $citiesList = $('#city');
+
+const getOptions = () => {
+    return cities.map(city => $(`<option value="${city}">${city}</option>`));
+};
+
+$citiesList.append(getOptions());
+
+
