@@ -87,23 +87,40 @@ function highLightOnLeave() {
 $tableRow.on('mouseenter', highLightOnOver);
 $tableRow.on('mouseleave', highLightOnLeave);
 
+// B.1 nad tabela być formularz, który pobiera dane usera i puszuje go do tablicy users i od razu pokazuje na widoku.
+$acceptBtn = $('#accept-button');
+$userAge = $('#age');
+$userFirstName = $('#firstName');
+$userLastName = $('#lastName');
+$userCity = $('#city');
 
+$acceptBtn.on('click', function() {
+    event.preventDefault();
+    users.push({
+        firstName: $userFirstName .val(),
+        lastName: $userLastName.val(),
+        age: $userAge.val(),
+        city: $userCity.val(),
+        id: users.length + 1,
+    });
+    $table.html(getRowsWithUsers())
+});
 
 // B.3 przycisk do dodania użytkownika ma być odblokowany jeśli wiek age > 18 a firstName ma więcej niż 3 litery
-
-$acceptBtn = $('#accept-button');
-$ageRequried = $('#age');
-$numberOfLetterRequired = $('#firstName');
 
 function required () {
     const MIN_REQUIRED_AGE = 18;
     const MIN_REQUIRED_LETTER_OF_NAME = 4;
-    return $ageRequried.val() < MIN_REQUIRED_AGE ||
-        $numberOfLetterRequired.val().length < MIN_REQUIRED_LETTER_OF_NAME;
+    return $userAge.val() < MIN_REQUIRED_AGE ||
+        $userFirstName.val().length < MIN_REQUIRED_LETTER_OF_NAME;
 }
 
 function validateSubmitBtn() {
     $acceptBtn.prop('disabled', required());
 }
 
-$ageRequried.add($numberOfLetterRequired).on('keyup', validateSubmitBtn);
+$userAge.add($userFirstName).on('keyup', validateSubmitBtn);
+
+
+
+
