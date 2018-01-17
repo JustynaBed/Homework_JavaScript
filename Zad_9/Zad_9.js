@@ -61,7 +61,7 @@ function propertyOfCbx() {
     }
 }
 
-$termsbox.on('click', propertyOfCbx);
+$table.on('click', '.terms-cbx', propertyOfCbx);
 // A.2 Ostatnia komórka powinna zawierać X z klasą remove-icon, który usuwa dany rząd
 
 const $trashIcon = $('.remove-icon');
@@ -70,7 +70,7 @@ function removeRow() {
     $(this).closest('tr').remove();
 }
 
-$trashIcon.on('click', removeRow);
+$table.on('click', '.remove-icon', removeRow);
 
 // A.5 najechanie na rząd ma go podświetlić
 
@@ -84,15 +84,15 @@ function highLightOnLeave() {
     $(this).removeClass('active');
 }
 
-$tableRow.on('mouseenter', highLightOnOver);
-$tableRow.on('mouseleave', highLightOnLeave);
+$table.on('mouseenter', '.table-row', highLightOnOver);
+$table.on('mouseleave', '.table-row', highLightOnLeave);
 
 // B.1 nad tabela być formularz, który pobiera dane usera i puszuje go do tablicy users i od razu pokazuje na widoku.
 $acceptBtn = $('#accept-button');
-$userAge = $('#age');
-$userFirstName = $('#firstName');
-$userLastName = $('#lastName');
-$userCity = $('#city');
+$userAge = $('#user-age');
+$userFirstName = $('#first-name');
+$userLastName = $('#last-name');
+$userCity = $('#user-city');
 
 $acceptBtn.on('click', function() {
     event.preventDefault();
@@ -122,5 +122,10 @@ function validateSubmitBtn() {
 $userAge.add($userFirstName).on('keyup', validateSubmitBtn);
 
 
+//Dodatkowe, autoczysczenie pola w formularzu po kliknięciu
+const $clearInput = $('input');
+function clear() {
+    $(this).val('')
+}
 
-
+$clearInput.on('click', clear);
