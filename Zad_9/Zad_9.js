@@ -95,7 +95,6 @@ $userLastName = $('#last-name');
 $userCity = $('#user-city');
 
 $acceptBtn.on('click', function() {
-    event.preventDefault();
     users.push({
         firstName: $userFirstName .val(),
         lastName: $userLastName.val(),
@@ -122,7 +121,7 @@ function validateSubmitBtn() {
 $userAge.add($userFirstName).on('keyup', validateSubmitBtn);
 
 
-//Dodatkowe, autoczysczenie pola w formularzu po kliknięciu
+//DODATKOWE: autoczysczenie pola w formularzu po kliknięciu
 const $clearInput = $('input');
 function clear() {
     $(this).val('')
