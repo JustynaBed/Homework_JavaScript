@@ -1,5 +1,9 @@
 import React from 'react';
 
 export default (props) => {
-    return <footer>Copyright by {props.author}.</footer>
-}
+    let style = {
+        textAlign: 'center',
+        color: 'red',
+    };
+    return <footer style={style}>Copyright by {props.author}.</footer>
+};
