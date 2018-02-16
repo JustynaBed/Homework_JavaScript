@@ -25,10 +25,12 @@ export default class AddTodo extends React.Component {
         };
 
         return <React.Fragment>
-        <header style={style}>Add To-Do</header>
-        <input value={this.state.currentInputValue} onChange={this.onInputChange} type="text"/>
-            <button onClick={this.onBtnClicked} disabled={!this.state.currentInputValue} ><i class="material-icons">&#xE146;</i></button>
-
+            <header style={style}>Add To-Do</header>
+            <input value={this.state.currentInputValue} onChange={this.onInputChange} type="text"/>
+            <button onClick={this.onBtnClicked}
+                    disabled={!this.state.currentInputValue}>
+                        <i class="material-icons">&#xE146;</i>
+            </button>
             </React.Fragment>
     }
 };
