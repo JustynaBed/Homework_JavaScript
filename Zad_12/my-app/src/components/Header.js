@@ -6,6 +6,7 @@ export default class Header extends React.Component {
             textAlign: 'center',
             color: 'blue',
         };
+
         return <React.Fragment>
             <header style={style}>To-Do</header>
         </React.Fragment>

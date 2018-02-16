@@ -1,7 +1,6 @@
 import React from 'react';
 
-export default (props) =>
-{
+export default (props) => {
     let className = 'text';
 
     if (props.isFinished) {
@@ -9,8 +8,8 @@ export default (props) =>
     }
 
     return <React.Fragment>
-    <ul>
-    <li className= { className }> { props.name } </li>
-    </ul>
+        <ul>
+            <li className= { className }> { props.name } </li>
+        </ul>
     </React.Fragment>
 };
