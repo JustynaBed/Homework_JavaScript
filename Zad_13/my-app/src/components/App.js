@@ -32,12 +32,33 @@ export default class extends React.Component {
         ]
     };
 
-render() {
-    return (
-        <React.Fragment>
-            <Header/>
-            <ContactList contacts={this.state.contacts} />
-        </React.Fragment>
-    )
+    addContact = ({ contactName, contactPhone, contactEmail, contactCategory }) => {
+        this.setState({
+            contacts: this.state.contacts.concat({
+                id: Date.now().toString(32),
+                name: contactName,
+                phone: contactPhone,
+                email: contactEmail,
+                category: contactCategory
+            })
+        })
+    };
+
+    removeContact = contactId => {
+        this.setState({
+            contacts: this.state.contacts.filter(contact => contact.id !== contactId)
+        })
+    };
+
+    render() {
+        return (
+            <React.Fragment>
+                <Header/>
+                <ContactList
+                    contacts={this.state.contacts}
+                    removeContact={this.removeContact}/>
+                <AddContact addContact={this.addContact}/>
+            </React.Fragment>
+        )
     }
 };
