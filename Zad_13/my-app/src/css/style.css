@@ -1,6 +1,23 @@
-.text {
-    font-size: 20px;
+body {
+    font-size: 25px;
     font-color: #232323;
+    font-family: Century;
+    background-color: #fff4e6;
 }
 
+button {
+    padding: 0px;
+    border-radius: 100%;
+    background-color: #be9b7b;
+}
 
+input {
+    background-color: #dafaf7;
+    font-size: 25px;
+}
+
+.header {
+    text-align: center;
+    color: #854442;
+    background-color: #be9b7b;
+};

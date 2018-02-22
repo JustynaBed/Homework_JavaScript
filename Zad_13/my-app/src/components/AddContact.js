@@ -30,19 +30,20 @@ class AddContact extends Component {
                 onChange={this.handleChange}
             />
         )
-    }
+    };
 
-      render() {
-          return (
-             <form onSubmit={this.handleSubmit}>
-                 Name: {this.renderInput('contactName')}
-                 Phone: {this.renderInput('contactPhone')}
-                 Email: {this.renderInput('contactEmail')}
+    render() {
+       return (
+          <form onSubmit={this.handleSubmit}>
+              <h1 className="header">Add new contact</h1>
+                 Name: {this.renderInput('contactName')}<br />
+                 Phone: {this.renderInput('contactPhone')}<br />
+                 Email: {this.renderInput('contactEmail')}<br />
                  Category: {this.renderInput('contactCategory')}
-             <button>Add contact</button>
-              </form>
-          )
-       }
+              <button disabled={!this.state.contactPhone}><i class="material-icons">add_circle</i></button>
+          </form>
+       )
     }
+}
 
 export default AddContact

@@ -32,6 +32,20 @@ export default class extends React.Component {
         ]
     };
 
+    updateContact = (contactId, updatedContact) => {
+        this.setState({
+            contacts: this.state.contacts.map(
+                contact =>
+                    contact.id !== contactId
+                        ? contact
+                        : {
+                            ...contact,
+                            ...updatedContact
+                        }
+            )
+        })
+    };
+
     addContact = ({ contactName, contactPhone, contactEmail, contactCategory }) => {
         this.setState({
             contacts: this.state.contacts.concat({
@@ -56,7 +70,8 @@ export default class extends React.Component {
                 <Header/>
                 <ContactList
                     contacts={this.state.contacts}
-                    removeContact={this.removeContact}/>
+                    removeContact={this.removeContact}
+                    updateContact={this.updateContact}/>
                 <AddContact addContact={this.addContact}/>
             </React.Fragment>
         )

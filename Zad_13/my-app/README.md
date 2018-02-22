@@ -1,5 +1,5 @@
 # Ex 13
-### Contacts Book (React)
+### Contacts Book
 
 Funkcje, które chciałbym zobaczyć w gotowej aplikacji:
 
