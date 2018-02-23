@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
+
 import EditContact from './EditContact'
+
 
 class ToggleEditContact extends Component {
     state = {
@@ -21,7 +23,8 @@ class ToggleEditContact extends Component {
                         phone={ contact.phone }
                         category={ contact.category }
                         updateContact={ this.props.updateContact} />
-                )}
+                     )
+                }
             </React.Fragment>
         )
     }

@@ -1,8 +1,11 @@
 import React from 'react';
-import '../css/style.css';
+
 import ContactList from './ContactList';
 import Header from './Header';
 import AddContact from './AddContact';
+
+import '../css/style.css';
+
 
 export default class extends React.Component {
 
@@ -72,7 +75,8 @@ export default class extends React.Component {
                     contacts={this.state.contacts}
                     removeContact={this.removeContact}
                     updateContact={this.updateContact}/>
-                <AddContact addContact={this.addContact}/>
+                <AddContact
+                    addContact={this.addContact}/>
             </React.Fragment>
         )
     }
