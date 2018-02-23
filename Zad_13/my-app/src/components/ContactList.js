@@ -9,19 +9,34 @@ export default class ContactList extends React.Component {
     };
 
     render() {
-        const { contacts } = this.props
-        return (<ul>{contacts.map(contact =>
+        const { contacts } = this.props;
+        return (
+            <React.Fragment>
+                <ul>{ contacts.map(contact => {
+                    let splitCategory = contact.category.split(',');
+                    for (let i=0; i < splitCategory.length; i++){
+                    splitCategory[i]=' ['+splitCategory[i]+']';
+                    }
+                    splitCategory = splitCategory.join(',');
+
+                return (
                   <li key={ contact.id }><strong>{ contact.name },</strong>
                   <br /> { contact.phone }, { contact.email }
-                  <br /> [{ contact.category }]
+                  <br /> { splitCategory }
                   <button data-contact-id={ contact.id } onClick={ this.handleRemoveClick }>
                       <i class="material-icons">delete</i>
                   </button>
                    <ToggleEditContact
                           contact={ contact }
                           updateContact={ this.props.updateContact }/>
-                  </li>)}
-               </ul>)
+                  </li>
+                    )
+                  }
+               )
+            }
+                </ul>
+            </React.Fragment>
+        )
     }
 };
 

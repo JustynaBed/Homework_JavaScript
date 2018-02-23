@@ -6,7 +6,7 @@ class EditContact extends Component {
         contactPhone: this.props.phone,
         contactEmail: this.props.email,
         contactCategory: this.props.category
-    }
+    };
 
     handleChange = ({ target: { name, value } }) => {
         this.setState({
@@ -15,7 +15,7 @@ class EditContact extends Component {
     };
 
     handleSubmit = event => {
-        event.preventDefault()
+        event.preventDefault();
 
         this.props.updateContact(this.props.contactId, {
             ...this.state,
