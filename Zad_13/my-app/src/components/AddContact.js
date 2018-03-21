@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
 const initialState = {
     contactName: '',
@@ -46,4 +47,18 @@ class AddContact extends Component {
     }
 }
 
-export default AddContact
+export default connect (
+    state => ({
+        contacts: state.data
+    }),
+    dispatch => ({
+        addContact: ({ contactName, contactPhone, contactEmail, contactCategory }) =>
+            dispatch({
+                type: 'ADD_CONTACT',
+                contactName,
+                contactPhone,
+                contactEmail,
+                contactCategory
+            })
+    })
+)(AddContact)

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
 class EditContact extends Component {
     state = {
@@ -52,4 +53,11 @@ class EditContact extends Component {
     }
 }
 
-export default EditContact
+export default connect(null, dispatch => ({
+    updateContact: (contactId, updatedContact) =>
+        dispatch({
+            type: 'UPDATE_CONTACT',
+            contactId,
+            updatedContact
+        })
+}))(EditContact)

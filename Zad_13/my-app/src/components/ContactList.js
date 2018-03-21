@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux'
 
 import ToggleEditContact from './ToggleEditContact';
 
 
-export default class ContactList extends React.Component {
+class ContactList extends Component {
 
     handleRemoveClick = event => {
         const contactId = event.target.dataset.contactId;
@@ -30,8 +31,7 @@ export default class ContactList extends React.Component {
                      <i class="material-icons">delete</i>
                      </button>
                      <ToggleEditContact
-                        contact={ contact }
-                        updateContact={ this.props.updateContact }/>
+                        contact={ contact }/>
                   </li>
                   )
                 }
@@ -42,6 +42,23 @@ export default class ContactList extends React.Component {
         )
     }
 };
+
+
+export default connect(
+    state => ({
+        contacts: state.contacts.data
+    }),
+
+    dispatch => ({
+        removeContact: contactId =>
+            dispatch({
+                type: 'REMOVE_CONTACT',
+                contactId
+        })
+    })
+
+)(ContactList)
+
 
 
 
